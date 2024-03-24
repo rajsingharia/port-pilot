@@ -34,7 +34,7 @@ func (s *TunnelClient) ListenForTunnel() error {
 	fmt.Print("Enter a local url string : ")
 	fmt.Scanln(&connectionUrl)
 
-	go s.writeToServer(true, "r.singharia,"+connectionUrl)
+	go s.writeToServer(true, "r.singharia," + connectionUrl)
 	go s.readHttpRequestFromServer()
 	<-s.channel
 	return nil

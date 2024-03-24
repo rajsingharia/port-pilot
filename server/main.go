@@ -41,14 +41,14 @@ func NewTunnel() *Tunnel {
 	var httpPort int
 	for {
 		httpPort = rand.Intn(9000) + 1000
-		if httpPort != 3000 && httpPort != 8080 {
+		if httpPort != 3000 && httpPort != 8080 && httpPort != tunnelPort {
 			break
 		}
 	}
 
 	return &Tunnel{
-		tunnelUrl: "http://localhost:" + fmt.Sprint(tunnelPort),
-		httpServerUrl: "http://localhost:" + fmt.Sprint(httpPort),
+		tunnelUrl: "http://0.0.0.0:" + fmt.Sprint(tunnelPort),
+		httpServerUrl: "http://0.0.0.0:" + fmt.Sprint(httpPort),
 		channel:       make(chan struct{}),
 		msgChannel:    make(chan []byte, 10),
 		peerMap:       make(map[string]net.Conn),
